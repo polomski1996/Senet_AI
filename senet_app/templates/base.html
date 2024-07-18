@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}My Flask App{% endblock %}</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* Podstawowy CSS dla planszy Seneta */
+        .senet-board {
+            display: grid;
+            grid-template-columns: repeat(10, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            gap: 5px;
+            width: 600px;
+            height: center;
+            margin: auto;
+        }
+        .senet-cell {
+            width: 60px;
+            height: 60px;
+            border: 1px solid #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <!-- Nawigacja -->
+        </nav>
+    </header>
+    <main>
+        <h1 align='center'>Senet_01</h1>
+        <br><br><br><br>
+        <div class="senet-board" align='center'>
+            {% for row in range(3) %}
+                {% for col in range(10) %}
+                    <div class="senet-cell" id="cell-{{ row }}-{{ col }}"></div>
+                {% endfor %}
+            {% endfor %}
+        </div>
+        {% block content %}{% endblock %}
+    </main>
+    <footer>
+        <!-- Stopka -->
+    </footer>
+</body>
+</html>
