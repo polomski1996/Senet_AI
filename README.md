@@ -1,5 +1,6 @@
 ## Senet board game & trained AI player.
- this program written in python contains simple implementation of senet board game.<br>
+ this program written in python contains simple implementation of senet board game with trained AI player ready for you to try it.<br>
+ AI is trained ML model, trainig was performed with RL-"reinforcement learning"<br>
  you can play alone with AI player, or with your friend just like on physical board.<br>
 
 ### Instalation
