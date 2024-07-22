@@ -23,7 +23,7 @@ def another_throw():
         return True
     else: return False
     
-def is_black_moving():
+def is_blue_moving():
     call_count += 1
     if (call_count%2==0):
         return True
