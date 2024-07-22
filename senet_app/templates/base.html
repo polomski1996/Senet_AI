@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{% block title %}My Flask App{% endblock %}</title>
+    <title>Senet</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
-        /* Basic css for senet baord. */
+        /* Basic css for senet board. */
         .senet-board {
             display: grid;
             grid-template-columns: repeat(10, 1fr);
             grid-template-rows: repeat(3, 1fr);
             gap: 5px;
             width: 600px;
-            height: center;
             margin: auto;
         }
         .senet-cell {
@@ -25,6 +24,22 @@
             justify-content: center;
             font-size: 1.5em;
         }
+        .pawn {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        .pawn.player1 {
+            background-color: red;
+            border: 2px solid darkred;
+        }
+        
+        .pawn.player2 {
+            background-color: blue;
+            border: 2px solid darkblue;
+        }
     </style>
 </head>
 <body>
@@ -34,19 +49,45 @@
         </nav>
     </header>
     <main>
-        <h1 align='center'>Senet_01</h1>
+        <h1 align='center'>Senet</h1>
         <br><br><br><br>
-        <div class="senet-board" align='center'>
-            {% for row in range(3) %}
-                {% for col in range(10) %}
-                    <div class="senet-cell" id="cell-{{ row }}-{{ col }}"></div>
-                {% endfor %}
-            {% endfor %}
-        </div>
+        <div id="senet-board" class="senet-board"></div>
         {% block content %}{% endblock %}
     </main>
     <footer>
-        <!-- Stopka -->
+        <!-- Footer content -->
     </footer>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const board = document.getElementById('senet-board');
+            const boardArray = [
+                '', '', '', '', '', '', '', '', '', '',
+                '', '', '', '', '', '', '', '', '', '',
+                '', '', '', '', '', '', '', '', '', ''
+            ];
+            
+            for (let i = 0; i < boardArray.length; i++) {
+                const cell = document.createElement('div');
+                cell.className = 'senet-cell';
+                cell.id = 'cell-' + i;
+                cell.dataset.index = i;
+                board.appendChild(cell);
+            }
+
+            // Create beginnign set
+            for (let i=0; i<9; i+=2) {
+                const pawn = document.createElement('div');
+                pawn.className = 'pawn player2';
+                pawn.id = 'player' + (i + 1);
+                document.getElementById('cell-' + i).appendChild(pawn);
+            }
+            for (let i=1; i<11; i+=2) {
+                const pawn = document.createElement('div');
+                pawn.className = 'pawn player1';
+                pawn.id = 'player' + (i + 1);
+                document.getElementById('cell-' + i).appendChild(pawn);
+            }
+        });
+    </script>
 </body>
 </html>
