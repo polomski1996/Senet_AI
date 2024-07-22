@@ -23,6 +23,11 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5em;
+            cursor: pointer;
+            position: relative;
+        }
+        .senet-cell.selected {
+            background-color: #f0f0f0; /* Highlight selected cell */
         }
         .pawn {
             width: 40px;
@@ -52,42 +57,15 @@
         <h1 align='center'>Senet</h1>
         <br><br><br><br>
         <div id="senet-board" class="senet-board"></div>
+
         {% block content %}{% endblock %}
+        <script src="{{ url_for('static', filename='script.js') }}"></script>
     </main>
     <footer>
         <!-- Footer content -->
     </footer>
     <script>
-        document.addEventListener("DOMContentLoaded", function() {
-            const board = document.getElementById('senet-board');
-            const boardArray = [
-                '', '', '', '', '', '', '', '', '', '',
-                '', '', '', '', '', '', '', '', '', '',
-                '', '', '', '', '', '', '', '', '', ''
-            ];
-            
-            for (let i = 0; i < boardArray.length; i++) {
-                const cell = document.createElement('div');
-                cell.className = 'senet-cell';
-                cell.id = 'cell-' + i;
-                cell.dataset.index = i;
-                board.appendChild(cell);
-            }
-
-            // Create beginnign set
-            for (let i=0; i<9; i+=2) {
-                const pawn = document.createElement('div');
-                pawn.className = 'pawn player2';
-                pawn.id = 'player' + (i + 1);
-                document.getElementById('cell-' + i).appendChild(pawn);
-            }
-            for (let i=1; i<11; i+=2) {
-                const pawn = document.createElement('div');
-                pawn.className = 'pawn player1';
-                pawn.id = 'player' + (i + 1);
-                document.getElementById('cell-' + i).appendChild(pawn);
-            }
-        });
+        
     </script>
 </body>
 </html>
